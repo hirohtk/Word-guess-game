@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guess Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid" style="height: 120%; background-image: url(https://miro.medium.com/max/2000/1*yGK9jD35goWdn3XtRq9y4Q.jpeg);">
+        <div class="container">
+            <h1 class="display-4" style="color: blue;">Sushi Hangman</h1>
+            <!--<p class="lead" style="color: blue;">Press any Key to get started!</p>-->
+        </div>
+    </div>
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card" style="width: 32rem; margin-left: 0%; height: 30rem">
+                    <img src="assets/images/sushi-plate-56a378d33df78cf7727d84f9.jpg" style= "width: 50%; height: 50%; margin: 0 auto; padding: 0.5rem;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the
+                            card's content.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card" style="width: 32rem; height: 30rem">
+                    <!--img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body">
+                        <h5 class="card-title">Press any key to get started!</h5>
+                        <p class="card-text" style="text-align: center;">
+                            <p>Wins: <span id="victories"> 0</span></p>  
+                            <p>Losses: <span id="defeats"> 0</span></p>   
+                            <p>Guesses Left: <span id="guessesLeft"> 10</span></p>
+                            <p>Current Word:</p>
+                            <br>
+                            <p><span id="currentWord"></span></p>
+                            <br>
+                            <p>Choices this round: <span id="userChoiceArray"></span></p>
+                            <p><span id="invalidEntry"></span></p>
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/javascript/game.js"></script>
+
+</body>
+
+</html>
