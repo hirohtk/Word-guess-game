@@ -6,12 +6,13 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 var userChoiceArray = []
 var userChoiceArrayDisplay = []
-var userChoiceArrayBTS= ["_","_","_","_","_","_"]
+var userChoiceArrayBTS = ["_", "_", "_", "_", "_", "_"]
 
 
 var invalidEntry = "Invalid Entry"
 
 var maguro = "maguro"
+var maguroArray = ["m", "a", "g", "u", "r", "o"]
 var sake = "sake"
 var unagi = "unagi"
 var ebi = "ebi"
@@ -37,135 +38,167 @@ function gameRefresh() {
     console.log(computerChoice);
 
     userChoiceArray.length = 0;
+    userChoiceArrayDisplay.length - 0;
     guessesLeft = 10;
 
 }
 
-function maguroCheck() {
+
+    function arraysMatch (arr1, arr2) {
+
+        // Check if the arrays are the same length
+        if (arr1.length !== arr2.length) return false;
     
-}
-
-function victory() {
-    wins++;
-    var winsWriter = document.getElementById("victories");
-    winsWriter.textContent = wins;
-}
-
-function maguroGame() {
-
-    var currentWordWriter = document.getElementById("currentWord");
-    currentWordWriter.textContent = "_ _ _ _ _ _";
-
-    document.onkeyup = function (event) {
-
-        var userChoice = event.key;
-
-        var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
-        userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
-        userChoiceArrayWriter.textContent = userChoiceArray;
-
-        if (alphabet.includes(userChoice)) { // If my array alphabet includes my guess, then
-            invalidEntryWriter = document.getElementById("invalidEntry");
-            invalidEntryWriter.textContent = ""; // so if you DO put a valid letter, string with nothing writes into the span
-            step1();  //enters the game 
+        // Check if all items exist and are in the same order
+        for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== arr2[i]) return false;
         }
+    
+        // Otherwise, return true
+        return true;
+    
+    }
 
-        else {
-            invalidEntryWriter = document.getElementById("invalidEntry");
-            invalidEntryWriter.textContent = invalidEntry;  // so if you DON'T put a valid letter, string with "Invalid Entry" writes into the span
-        }
+    function victory() {
+        wins++;
+        var winsWriter = document.getElementById("victories");
+        winsWriter.textContent = wins;
+    }
+    
 
-        function clearChoices() {
+    function maguroGame() {
+
+        var currentWordWriter = document.getElementById("currentWord");
+        currentWordWriter.textContent = "_ _ _ _ _ _";
+
+        document.onkeyup = function (event) {
+
+            var userChoice = event.key;
+
             var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
-            userChoiceArrayWriter.textContent = "";
-            var userChoiceWriter = document.getElementById("userChoice");
-            userChoiceWriter.textContent = "";
-        }
+            userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
+            userChoiceArrayWriter.textContent = userChoiceArray;
 
-        function step1() {
-            if (maguro.includes(userChoice) && guessesLeft !== 0) {
-                step2();
+            if (alphabet.includes(userChoice)) { // If my array alphabet includes my guess, then
+                invalidEntryWriter = document.getElementById("invalidEntry");
+                invalidEntryWriter.textContent = ""; // so if you DO put a valid letter, string with nothing writes into the span
+                step1();  //enters the game 
             }
-            else if (guessesLeft === 0) {
-                losses++;
-                gameRefresh();
-                clearChoices();
-            }
+
             else {
-                guessesLeft--;
+                invalidEntryWriter = document.getElementById("invalidEntry");
+                invalidEntryWriter.textContent = invalidEntry;  // so if you DON'T put a valid letter, string with "Invalid Entry" writes into the span
             }
 
-            var guessLeftWriter = document.getElementById("guessesLeft");
-            guessLeftWriter.textContent = guessesLeft
+            function clearChoices() {
+                var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
+                userChoiceArrayWriter.textContent = "";
+                
+            }
 
             
 
-            var lossesWriter = document.getElementById("defeats");
-            lossesWriter.textContent = losses;
+            function step1() {
+                if (maguro.includes(userChoice) && guessesLeft !== 0) {
+                    step2();
+                }
+                else if (guessesLeft === 0) {
+                    losses++;
+                    gameRefresh();
+                    clearChoices();
+                }
+                else {
+                    guessesLeft--;
+                }
+
+                var guessLeftWriter = document.getElementById("guessesLeft");
+                guessLeftWriter.textContent = guessesLeft
+
+
+
+                var lossesWriter = document.getElementById("defeats");
+                lossesWriter.textContent = losses;
+            }
+
+            function step2() {
+                userChoiceArrayDisplay.length = 6;
+                if (userChoice === "m") {
+                    userChoiceArrayDisplay[0] = "m";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                    
+
+                }
+                else if (userChoice === "a") {
+                    userChoiceArrayDisplay[1] = "a";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                    
+
+                }
+                else if (userChoice === "g") {
+                    userChoiceArrayDisplay[2] = "g";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                    
+
+                }
+                else if (userChoice === "u") {
+                    userChoiceArrayDisplay[3] = "u";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                   
+
+                }
+                else if (userChoice === "r") {
+                    userChoiceArrayDisplay[4] = "r";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                   
+
+                }
+                else if (userChoice === "o") {
+                    userChoiceArrayDisplay[5] = "o";
+                    console.log(userChoiceArrayDisplay);
+                    if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
+                        victory();
+                        gameRefresh();
+                        clearChoices();
+                    }
+                    
+                }
+
+                var currentWordWriter = document.getElementById("currentWord");
+                currentWordWriter.textContent = userChoiceArrayDisplay;
+
+
+
+
+
+
+
+
+            }
         }
-
-        function step2() {
-            userChoiceArrayDisplay.length = 6;
-            if (userChoice === "m") {
-                userChoiceArrayDisplay[0] ="m";
-                //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-            else if (userChoice === "a") {
-                userChoiceArrayDisplay[1] = "a";
-                //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-            else if (userChoice === "g") {
-                userChoiceArrayDisplay[2] = "g";
-                //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-            else if (userChoice === "u") {
-                userChoiceArrayDisplay[3] = "u";
-               //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-            else if (userChoice === "r") {
-                userChoiceArrayDisplay[4] = "r";
-                //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-            else if (userChoice === "o") {
-                userChoiceArrayDisplay[5] = "o";
-                //maguroCheck();
-                //if (userChoiceArrayDisplay = ["m", "a", "g", "u", "r", "o"]) {
-                //    victory();
-                //}
-                
-            }
-
-            var currentWordWriter = document.getElementById("currentWord");
-            currentWordWriter.textContent = userChoiceArrayDisplay;
-
-
-        }
-
-        
-
-        
 
     }
-}
-
-
