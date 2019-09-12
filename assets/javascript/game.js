@@ -6,18 +6,25 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 var userChoiceArray = []
 var userChoiceArrayDisplay = []
-var userChoiceArrayBTS = ["_", "_", "_", "_", "_", "_"]
+
+var userChoiceArrayBTS = ["_", " _", " _", " _", " _", " _"]
+var userChoiceArrayBTS2 = ["_", " _", " _", " _"]
+var userChoiceArrayBTS3 = ["_", " _", " _", " _", " _"]
+var userChoiceArrayBTS4 = ["_", " _", " _"]
 
 
 var invalidEntry = "Invalid Entry"
 
 var maguro = "maguro"
-var maguroArray = ["m", "a", "g", "u", "r", "o"]
+var maguroArray = ["m", " a", " g", " u", " r", " o"]
 var sake = "sake"
+var sakeArray = ["s", " a", " k", " e"]
 var unagi = "unagi"
+var sakeArray = ["u", " n", " a", " g", " i"]
 var ebi = "ebi"
+var sakeArray = ["e", " b", " i"]
 
-var sushiArray = ["maguro", "sake", "unagi", "ebi"]
+var sushiArray = [maguro, sake, unagi, ebi]
 
 initialize();
 
@@ -27,11 +34,7 @@ function initialize() {
     var computerChoice = sushiArray[computerChoiceMath];
     console.log(computerChoice);
 
-    console.log(computerChoice.indexOf("m"));
-
-
     if (computerChoice = "maguro") {
-        guessesLeft = 10;
         maguroGame();
     }
 
@@ -44,8 +47,9 @@ function gameRefresh() {
 
     userChoiceArray.length = 0;
     userChoiceArrayDisplay.length = 0;
+
     userChoiceArrayBTS.length = 0;
-    
+    userChoiceArrayBTS2.length = 0;
     
     initialize();
 
@@ -67,16 +71,153 @@ function arraysMatch(arr1, arr2) {
 
 }
 
-function victory() {
+function victoryMaguro() {
     wins++;
     var winsWriter = document.getElementById("victories");
     winsWriter.textContent = wins;
+
+    var actualSushiWriter = document.getElementById("actualSushi");
+    actualSushiWriter.textContent = maguro;
+
+    gameRefresh();
+    
+}
+
+function victorySake() {
+    wins++;
+    var winsWriter = document.getElementById("victories");
+    winsWriter.textContent = wins;
+
+    var actualSushiWriter = document.getElementById("actualSushi");
+    actualSushiWriter.textContent = sake;
+
     gameRefresh();
     initialize();
 }
 
+function sakeGame() {
+
+    userChoiceArrayBTS2 = ["_", " _", " _", " _"]
+
+    var currentWordWriter = document.getElementById("currentWord");
+    currentWordWriter.textContent = userChoiceArrayBTS2;
+
+    document.onkeyup = function (event) {
+
+        var userChoice = event.key;
+
+
+
+        if (alphabet.includes(userChoice)) { // If my array alphabet includes my guess, then
+            
+            var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
+            userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
+            userChoiceArrayWriter.textContent = userChoiceArray;
+            step1();  //enters the game 
+        }
+
+        else {
+            invalidEntryWriter = document.getElementById("invalidEntry");
+            invalidEntryWriter.textContent = invalidEntry;  // so if you DON'T put a valid letter, string with "Invalid Entry" writes into the span
+        }
+
+        function clearChoices() {
+            var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
+            userChoiceArrayWriter.textContent = "";
+
+        }
+
+
+
+        function step1() {
+            if (sake.includes(userChoice) && guessesLeft !== 0) {
+                step2();
+            }
+            else if (guessesLeft === 0) {
+                losses++;
+                clearChoices();
+                gameRefresh();
+            }
+            else {
+                guessesLeft--;
+            }
+
+            var guessLeftWriter = document.getElementById("guessesLeft");
+            guessLeftWriter.textContent = guessesLeft
+
+
+
+            var lossesWriter = document.getElementById("defeats");
+            lossesWriter.textContent = losses;
+        }
+
+        function step2() {
+            userChoiceArrayBTS2.length = 4;
+            if (userChoice === "s") {
+                userChoiceArrayBTS2[0] = "s";
+                console.log(userChoiceArrayBTS2);
+                if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
+                    victorySake();
+                    gameRefresh();
+
+                }
+
+
+            }
+            else if (userChoice === "a") {
+                userChoiceArrayBTS2[1] = " a";
+                console.log(userChoiceArrayBTS2);
+                if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
+                    victorySake();
+                    gameRefresh();
+
+                }
+
+
+            }
+            else if (userChoice === "k") {
+                userChoiceArrayBTS2[2] = " k";
+                console.log(userChoiceArrayBTS2);
+                if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
+                    victorySake();
+                    gameRefresh();
+
+                }
+
+
+            }
+            else if (userChoice === "e") {
+                userChoiceArrayBTS2[3] = " e";
+                console.log(userChoiceArrayBTS2);
+                if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
+                    victorySake();
+                    gameRefresh();
+
+                }
+
+
+            }
+
+            var currentWordWriter = document.getElementById("currentWord");
+            currentWordWriter.textContent = userChoiceArrayBTS2;
+
+        }
+    }
+
+}
+
 
 function maguroGame() {
+
+    guessesLeft = 10;
+    console.log(guessesLeft);
+
+    guessLeftWriter = document.getElementById("guessesLeft");
+    guessLeftWriter.textContent = guessesLeft;
+    console.log(guessesLeft);
+
+
+    userChoiceArrayBTS = ["_", " _", " _", " _", " _", " _"]
 
     var currentWordWriter = document.getElementById("currentWord");
     currentWordWriter.textContent = userChoiceArrayBTS;
@@ -110,20 +251,21 @@ function maguroGame() {
 
         function step1() {
             if (maguro.includes(userChoice) && guessesLeft !== 0) {
+                guessesLeft--;
                 step2();
             }
             else if (guessesLeft === 0) {
                 losses++;
-                gameRefresh();
                 clearChoices();
+                gameRefresh();
             }
             else {
                 guessesLeft--;
             }
 
+            
             var guessLeftWriter = document.getElementById("guessesLeft");
-            guessLeftWriter.textContent = guessesLeft
-
+            guessLeftWriter.textContent = guessesLeft;
 
 
             var lossesWriter = document.getElementById("defeats");
@@ -131,75 +273,64 @@ function maguroGame() {
         }
 
         function step2() {
-            userChoiceArrayDisplay.length = 6;
+            
+            userChoiceArrayBTS.length = 6;
             if (userChoice === "m") {
-                userChoiceArrayDisplay[0] = "m";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[0] = "m";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
 
             }
             else if (userChoice === "a") {
-                userChoiceArrayDisplay[1] = "a";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[1] = " a";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
 
             }
             else if (userChoice === "g") {
-                userChoiceArrayDisplay[2] = "g";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[2] = " g";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
 
             }
             else if (userChoice === "u") {
-                userChoiceArrayDisplay[3] = "u";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[3] = " u";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
 
             }
             else if (userChoice === "r") {
-                userChoiceArrayDisplay[4] = "r";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[4] = " r";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
 
             }
             else if (userChoice === "o") {
-                userChoiceArrayDisplay[5] = "o";
-                console.log(userChoiceArrayDisplay);
-                if ((arraysMatch(userChoiceArrayDisplay, maguroArray))) {
-                    victory();
-                    gameRefresh();
-
+                userChoiceArrayBTS[5] = " o";
+                console.log(userChoiceArrayBTS);
+                if ((arraysMatch(userChoiceArrayBTS, maguroArray))) {
+                    victoryMaguro();
                 }
 
             }
 
             var currentWordWriter = document.getElementById("currentWord");
-            currentWordWriter.textContent = userChoiceArrayDisplay;
+            currentWordWriter.textContent = userChoiceArrayBTS;
 
         }
     }
