@@ -159,6 +159,7 @@ function ebiGame() {
             var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
             userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
             userChoiceArrayWriter.textContent = userChoiceArray;
+            var invalidEntryWriter = document.getElementById("invalidEntry");
             invalidEntryWriter.textContent = "";
             step1();  //enters the game 
         }
@@ -263,6 +264,7 @@ function unagiGame() {
             var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
             userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
             userChoiceArrayWriter.textContent = userChoiceArray;
+            var invalidEntryWriter = document.getElementById("invalidEntry");
             invalidEntryWriter.textContent = "";
             step1();  //enters the game 
         }
@@ -393,6 +395,7 @@ function sakeGame() {
             var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
             userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
             userChoiceArrayWriter.textContent = userChoiceArray;
+            var invalidEntryWriter = document.getElementById("invalidEntry");
             invalidEntryWriter.textContent = "";
             step1();  //enters the game 
         }
@@ -514,6 +517,7 @@ function maguroGame() {
             var userChoiceArrayWriter = document.getElementById("userChoiceArray"); //created an array for user selection
             userChoiceArray.push(userChoice); //pushing userChoice from above onto the end of an array
             userChoiceArrayWriter.textContent = userChoiceArray;
+            var invalidEntryWriter = document.getElementById("invalidEntry");
             invalidEntryWriter.textContent = "";
             step1();  //enters the game 
         }
