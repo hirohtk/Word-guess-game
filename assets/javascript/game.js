@@ -24,20 +24,27 @@ var sakeArray = ["u", " n", " a", " g", " i"]
 var ebi = "ebi"
 var sakeArray = ["e", " b", " i"]
 
-var sushiArray = [maguro, sake, unagi, ebi]
+var sushiArray = ["maguro", "sake", "unagi", "ebi"]
 
 initialize();
 
 function initialize() {
     
-    var computerChoiceMath = Math.floor(Math.random() * 0); // setting this to zero for now so it always chooses maguro
+    var computerChoiceMath = Math.floor(Math.random() * 2); // setting this to zero for now so it always chooses maguro
     var computerChoice = sushiArray[computerChoiceMath];
     console.log(computerChoice);
 
-    if (computerChoice = "maguro") {
+    if (computerChoice === "sake") {
+        console.log("sees sake")
+        sakeGame();
+    }
+    else if (computerChoice === "maguro") {
+        console.log("sees maguro")
         maguroGame();
     }
-
+    
+    
+    
 
 }
 
@@ -50,6 +57,8 @@ function gameRefresh() {
 
     userChoiceArrayBTS.length = 0;
     userChoiceArrayBTS2.length = 0;
+    userChoiceArrayBTS3.length = 0;
+    userChoiceArrayBTS4.length = 0;
     
     initialize();
 
@@ -92,10 +101,21 @@ function victorySake() {
     actualSushiWriter.textContent = sake;
 
     gameRefresh();
-    initialize();
+    
 }
 
+
+
+
+
 function sakeGame() {
+
+    guessesLeft = 8;
+    console.log(guessesLeft);
+
+    guessLeftWriter = document.getElementById("guessesLeft");
+    guessLeftWriter.textContent = guessesLeft;
+    console.log(guessesLeft);
 
     userChoiceArrayBTS2 = ["_", " _", " _", " _"]
 
@@ -105,8 +125,6 @@ function sakeGame() {
     document.onkeyup = function (event) {
 
         var userChoice = event.key;
-
-
 
         if (alphabet.includes(userChoice)) { // If my array alphabet includes my guess, then
             
@@ -131,6 +149,7 @@ function sakeGame() {
 
         function step1() {
             if (sake.includes(userChoice) && guessesLeft !== 0) {
+                guessesLeft--;
                 step2();
             }
             else if (guessesLeft === 0) {
@@ -157,9 +176,7 @@ function sakeGame() {
                 userChoiceArrayBTS2[0] = "s";
                 console.log(userChoiceArrayBTS2);
                 if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
-                    victorySake();
-                    gameRefresh();
-
+                    victorySake();     
                 }
 
 
@@ -169,8 +186,6 @@ function sakeGame() {
                 console.log(userChoiceArrayBTS2);
                 if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
                     victorySake();
-                    gameRefresh();
-
                 }
 
 
@@ -180,8 +195,6 @@ function sakeGame() {
                 console.log(userChoiceArrayBTS2);
                 if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
                     victorySake();
-                    gameRefresh();
-
                 }
 
 
@@ -191,8 +204,6 @@ function sakeGame() {
                 console.log(userChoiceArrayBTS2);
                 if ((arraysMatch(userChoiceArrayBTS2, sakeArray))) {
                     victorySake();
-                    gameRefresh();
-
                 }
 
 
@@ -205,7 +216,6 @@ function sakeGame() {
     }
 
 }
-
 
 function maguroGame() {
 
