@@ -10,4 +10,6 @@ another word.
 If the user guesses the word successfully, an increment is made towards their "win" count.  Similarly, every time they lose the game,
 an increment is made towards their "loss" count.  
 
+This application features input validation- an input that is not an alphabetic character does not count towards the user's guess "score" but instead renders an error, prompting another (valid) guess.
+
 There are currently only 4 words that the user can guess, as when I made this app, Javascript was still ~2 weeks old to me.  There is another repository of mine which can be considered a refactor of this assignment that utilizes node as a runtime environment for the javascript that I use: https://github.com/hirohtk/word_guess_node.  
